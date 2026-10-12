@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | CloudNotes</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body class="auth-page">
+
+    <main class="auth-container">
+        <div class="brand">
+            <div class="brand-icon">C</div>
+            <h1>CloudNotes</h1>
+        </div>
+
+        <p class="auth-subtitle">Your thoughts, organized securely.</p>
+
+        <section class="auth-card">
+            <h2>Welcome back</h2>
+            <p class="muted">Sign in to access your notes.</p>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    >
+                </div>
+
+                <p id="loginMessage" class="form-message"
+                   role="status" aria-live="polite"></p>
+
+                <button type="submit" class="btn btn-primary btn-full">
+                    Sign In
+                </button>
+            </form>
+
+            <p class="auth-footer">
+                Don't have an account?
+                <a href="register.html">Create an account</a>
+            </p>
+        </section>
+
+        <p class="page-note">Your personal space for every idea.</p>
+    </main>
+<script src="../static/script.js"></script>
+</body>
+</html>
+

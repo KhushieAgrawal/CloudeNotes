@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account | CloudNotes</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body class="auth-page">
+
+    <main class="auth-container">
+        <div class="brand">
+            <div class="brand-icon">C</div>
+            <h1>CloudNotes</h1>
+        </div>
+
+        <p class="auth-subtitle">A safe place for your ideas.</p>
+
+        <section class="auth-card">
+            <h2>Create your account</h2>
+            <p class="muted">Get started with your personal notes.</p>
+
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Choose a username"
+                        autocomplete="username"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="registerEmail">Email address</label>
+                    <input
+                        type="email"
+                        id="registerEmail"
+                        name="email"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input
+                        type="password"
+                        id="registerPassword"
+                        name="password"
+                        placeholder="Create a password"
+                        autocomplete="new-password"
+                        minlength="8"
+                        required
+                    >
+                </div>
+
+                <p id="registerMessage" class="form-message"
+                   role="status" aria-live="polite"></p>
+
+                <button type="submit" class="btn btn-primary btn-full">
+                    Create Account
+                </button>
+            </form>
+
+            <p class="auth-footer">
+                Already have an account?
+                <a href="login.html">Sign in</a>
+            </p>
+        </section>
+
+        <p class="page-note">Simple notes. Clear thinking.</p>
+    </main>
+
+</body>
+</html>
