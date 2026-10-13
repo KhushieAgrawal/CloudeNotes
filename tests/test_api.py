@@ -17,8 +17,22 @@ def client(tmp_path):
         db.session.remove()
         db.drop_all()
 
-def register(client, username="alice", email="alice@example.com", password="securepass123"):
-    return client.post("/register", json={"username": username, "email": email, "password": password})
+def register(client, username="testuser",
+              email="test@example.com", password="Password123"):
+    response = client.post(
+        "/register",
+        json={
+            "username": username,
+            "email": email,
+            "password": password,
+        },
+    )
+
+    if response.status_code == 201:
+        token = response.json["token"]
+        client.environ_base["HTTP_AUTHORIZATION"] = f"Bearer {token}"
+
+    return response
 
 def test_health(client):
     r = client.get("/health")
@@ -28,12 +42,12 @@ def test_registration_hashes_password(client):
     assert register(client).status_code == 201
     from models import User
     with client.application.app_context():
-        user = User.query.filter_by(email="alice@example.com").first()
-        assert user and user.password_hash != "securepass123"
+        user = User.query.filter_by(email="test@example.com").first()
+        assert user and user.password_hash != "Password123"
 
 def test_duplicate_email_rejected(client):
     assert register(client).status_code == 201
-    assert register(client, username="alice2").status_code == 409
+    assert register(client, username="testuser2").status_code == 409
 
 def test_notes_require_login(client):
     assert client.get("/api/notes").status_code == 401
@@ -53,7 +67,7 @@ def test_user_cannot_access_another_users_note(client):
     note = client.post("/api/notes", json={"title": "Private", "content": "Alice's note"})
     note_id = note.json["note"]["id"]
     client.post("/logout")
-    assert register(client, "bob", "bob@example.com").status_code == 201
+    assert register(client, username="bob", email="bob@example.com").status_code == 201
     assert client.put(f"/api/notes/{note_id}", json={"title": "Stolen"}).status_code == 404
     assert client.delete(f"/api/notes/{note_id}").status_code == 404
     assert client.get("/api/notes").json["notes"] == []

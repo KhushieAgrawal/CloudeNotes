@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | CloudNotes</title>
-    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body class="auth-page">
 
@@ -56,13 +56,13 @@
 
             <p class="auth-footer">
                 Don't have an account?
-                <a href="register.html">Create an account</a>
+                <a href="{{ url_for('register_page') }}">Create an account</a>
             </p>
         </section>
 
         <p class="page-note">Your personal space for every idea.</p>
     </main>
-<script src="../static/script.js"></script>
+<script src="{{ url_for('static', filename='script.js') }}" defer></script>
 </body>
 </html>
 
